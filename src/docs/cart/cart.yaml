@@ -1,0 +1,406 @@
+tags:
+  - name: Carts
+    description: The carts managing API
+
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The auto-generated id of the cart
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              product:
+                type: string
+                description: The product id
+              quantity:
+                type: integer
+                description: The quantity of the product in the cart
+      example:
+        id: c1fE_asz
+        products:
+          - product: p1dE_asz
+            quantity: 2
+
+    ProductInCart:
+      type: object
+      properties:
+        product:
+          type: string
+          description: The product id
+        quantity:
+          type: integer
+          description: The quantity of the product in the cart
+      required:
+        - product
+        - quantity
+      example:
+        product: p1dE_asz
+        quantity: 2
+
+    Purchase:
+      type: object
+      properties:
+        code:
+          type: string
+          description: The purchase code
+        purchase_datetime:
+          type: string
+          format: date-time
+          description: The datetime of the purchase
+        amount:
+          type: number
+          description: The total amount of the purchase
+        purchaser:
+          type: string
+          description: The id of the purchaser
+      example:
+        code: 12345ABC
+        purchase_datetime: 2024-05-17T12:00:00Z
+        amount: 199.99
+        purchaser: u1dE_asz
+
+paths:
+  /api/carts:
+    post:
+      summary: Create a new cart
+      tags: [Carts]
+      responses:
+        200:
+          description: The cart was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.
+
+  /api/carts/{cid}:
+    get:
+      summary: Get a cart by id
+      tags: [Carts]
+      parameters:
+        - in: path
+          name: cid
+          schema:
+            type: string
+          required: true
+          description: The cart id
+      responses:
+        200:
+          description: The cart description by id
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductInCart'
+        404:
+          description: Cart not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No cart exist with the id {cid}
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.
+    put:
+      summary: Update a cart with an array of products
+      tags: [Carts]
+      parameters:
+        - in: path
+          name: cid
+          schema:
+            type: string
+          required: true
+          description: The cart id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProductInCart'
+      responses:
+        200:
+          description: The cart was successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        404:
+          description: Cart not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No cart exist with the id {cid}
+                    description: Missing required fields
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.
+    delete:
+      summary: Clear a cart by id
+      tags: [Carts]
+      parameters:
+        - in: path
+          name: cid
+          schema:
+            type: string
+          required: true
+          description: The cart id
+      responses:
+        200:
+          description: All products have been deleted from the cart successfully
+        404:
+          description: Cart not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: No cart exist with the id {cid}
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.
+
+  /api/carts/{cid}/product/{pid}:
+    post:
+      summary: Add a product to a cart
+      tags: [Carts]
+      parameters:
+        - in: path
+          name: cid
+          schema:
+            type: string
+          required: true
+          description: The cart id
+        - in: path
+          name: pid
+          schema:
+            type: string
+          required: true
+          description: The product id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  default: 1
+      responses:
+        200:
+          description: The product was successfully added to the cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        404:
+          description: Cart or product not found
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "A cart with the id {cid} was not found."
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "A product with the id {pid} was not found."
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.
+    put:
+      summary: Update the quantity of a product in a cart
+      tags: [Carts]
+      parameters:
+        - in: path
+          name: cid
+          schema:
+            type: string
+          required: true
+          description: The cart id
+        - in: path
+          name: pid
+          schema:
+            type: string
+          required: true
+          description: The product id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+      responses:
+        200:
+          description: The product quantity was successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        404:
+          description: Cart or product not found
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "A cart with the id {cid} was not found."
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "A product with the id {pid} was not found."
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.
+    delete:
+      summary: Delete a product from a cart
+      tags: [Carts]
+      parameters:
+        - in: path
+          name: cid
+          schema:
+            type: string
+          required: true
+          description: The cart id
+        - in: path
+          name: pid
+          schema:
+            type: string
+          required: true
+          description: The product id
+      responses:
+        200:
+          description: The product was successfully removed from the cart
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        404:
+          description: Cart or product not found
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "A cart with the id {cid} was not found."
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "A product with the id {pid} was not found."
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.
+
+  /api/carts/{cid}/purchase:
+    post:
+      summary: Complete the purchase process for a cart
+      tags: [Carts]
+      parameters:
+        - in: path
+          name: cid
+          schema:
+            type: string
+          required: true
+          description: The cart id
+      responses:
+        200:
+          description: The purchase was successfully completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Purchase'
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.

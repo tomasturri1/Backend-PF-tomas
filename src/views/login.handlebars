@@ -1,0 +1,51 @@
+{{>header}}
+<section class="section_login">
+    <div class="login_container">
+        <div class="loginTitle_container">
+            <h1>Sign in</h1>
+            <span>To access exclusive shopping benefits.</span>
+        </div>
+        <form id="loginForm" action="/api/users/login" method="POST">
+            <div class="input_container_total">
+                <span class="input_error" id="errors_email"></span>
+                <div class="input_container">
+                    <input class="input" id="email" type="email" name="email" placeholder="" autoComplete="off">
+                    <span class="input_placeholder">Email Address</span>
+                </div>
+            </div>
+            <div class="input_container_total">
+                <span class="input_error" id="errors_password"></span>
+                <div class="input_container">
+                    <input class="input" id="password" type="password" name="password" placeholder=""
+                        autoComplete="off">
+                    <span class="input_placeholder">Password</span>
+                    <div class="show_password_icon" id="showPasswordIcon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                            <path
+                                d="M 12 5 c -7.633 0 -9.927 6.617 -9.948 6.684 L 1.946 12 l 0.105 0.316 C 2.073 12.383 4.367 19 12 19 s 9.927 -6.617 9.948 -6.684 l 0.106 -0.316 l -0.105 -0.316 C 21.927 11.617 19.633 5 12 5 Z m 0 11 c -2.206 0 -4 -1.794 -4 -4 s 1.794 -4 4 -4 s 4 1.794 4 4 s -1.794 4 -4 4 Z" />
+                            <path
+                                d="M 12 10 c -1.084 0 -2 0.916 -2 2 s 0.916 2 2 2 s 2 -0.916 2 -2 s -0.916 -2 -2 -2 Z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <button class="loginBtn" type="submit">Sign in</button>
+            <div class="loginOptions">
+                <span>Or</span>
+            </div>
+            <a class="googleLoginBtn_link" href="/api/users/auth/google">
+                <button class="googleLoginBtn" type="button">
+                    <div class="googleImg_container">
+                        <img src="../assets/images/png/google-icon.png" alt="Google Icon">
+                    </div>
+                    <span>Sign in with Google</span>
+                </button>
+            </a>
+        </form>
+    </div>
+    <a class="login_forgot_password" href="/requestpasswordreset">Forgot password?</a>
+    <div class="login_registerOption">
+        <span>Don’t have an account? <a href="/register">Create yours now.</a></span>
+    </div>
+</section>
+<script src="/js/login-register.js"></script>

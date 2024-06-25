@@ -1,0 +1,336 @@
+tags:
+  - name: Products
+    description: The products managing API
+
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - title
+        - description
+        - category
+        - price
+        - code
+        - stock
+        - status
+      properties:
+        id:
+          type: string
+          description: The auto-generated id of the product
+        title:
+          type: string
+          description: The title of the product
+        description:
+          type: string
+          description: The description of the product
+        category:
+          type: string
+          description: The category of the product
+        price:
+          type: number
+          description: The price of the product
+        code:
+          type: string
+          description: The code of the product
+        stock:
+          type: number
+          description: The stock quantity of the product
+        status:
+          type: boolean
+          description: The availability status of the product
+        thumbnails:
+          type: list
+          items:
+            type: string
+          description: The images of the product
+      example:
+        id: d5fE_asz
+        title: Example Product
+        description: This is an example product
+        category: Example Category
+        price: 99.99
+        code: EX123
+        stock: 100
+        status: true
+        thumbnails: ['product-image.jpg']
+
+    ProductInput:
+      type: object
+      required:
+        - title
+        - description
+        - category
+        - price
+        - code
+        - stock
+        - status
+      properties:
+        title:
+          type: string
+          description: The title of the product
+        description:
+          type: string
+          description: The description of the product
+        category:
+          type: string
+          description: The category of the product
+        price:
+          type: number
+          description: The price of the product
+        code:
+          type: string
+          description: The code of the product
+        stock:
+          type: number
+          description: The stock quantity of the product
+        status:
+          type: boolean
+          description: The availability status of the product
+        thumbnails:
+          type: list
+          items:
+            type: string
+          description: The images of the product
+      example:
+        title: Example Product
+        description: This is an example product
+        category: Example Category
+        price: 99.99
+        code: EX123
+        stock: 100
+        status: true
+        thumbnails: ['product-image.jpg']
+
+paths:
+  /api/products:
+    get:
+      summary: Returns the list of all the products
+      tags: [Products]
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: The number of items to return
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: The page number to return
+        - in: query
+          name: sort
+          schema:
+            type: string
+            enum: [asc, desc]
+          description: The sort order
+        - in: query
+          name: query
+          schema:
+            type: string
+          description: The query filter (e.g., category)
+      responses:
+        200:
+          description: The list of the products
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  payload:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+                  totalDocs:
+                    type: integer
+                  totalPages:
+                    type: integer
+                  prevPage:
+                    type: integer
+                  nextPage:
+                    type: integer
+                  page:
+                    type: integer
+                  hasPrevPage:
+                    type: boolean
+                  hasNextPage:
+                    type: boolean
+                  prevLink:
+                    type: string
+                  nextLink:
+                    type: string
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.
+    post:
+      summary: Add a new product
+      tags: [Products]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        200:
+          description: The product was successfully created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductInput'
+        400:
+          description: Missing required fields
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "All fields are mandatory."
+                  - type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "A product with that code already exists."
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.
+
+  /api/products/{pid}:
+    get:
+      summary: Get a product by id
+      tags: [Products]
+      parameters:
+        - in: path
+          name: pid
+          schema:
+            type: string
+          required: true
+          description: The product id
+      responses:
+        200:
+          description: The product description by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: A product with the id {pid} was not found
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.
+    put:
+      summary: Update a product
+      tags: [Products]
+      parameters:
+        - in: path
+          name: pid
+          schema:
+            type: string
+          required: true
+          description: The product id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        200:
+          description: The product was successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductInput'
+        404:
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: A product with the id {pid} was not found.
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.
+    delete:
+      summary: Delete a product
+      tags: [Products]
+      parameters:
+        - in: path
+          name: pid
+          schema:
+            type: string
+          required: true
+          description: The product id
+      responses:
+        200:
+          description: The product was successfully deleted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        404:
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: A product with the id {pid} was not found.
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal Server Error.

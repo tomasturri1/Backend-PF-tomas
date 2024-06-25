@@ -1,0 +1,55 @@
+{{>header}}
+{{>headerScrolledPage}}
+<main>
+    <div class="navbar_promos">
+        <p>Get $200-$640 in credit toward iPhone 14 or iPhone 14 Pro when you trade in iPhone 11 or higher.</p>
+    </div>
+    <section class="section_store">
+        <div class="container_title_store">
+            <h1>iStore. <span>The best way to buy the <br>products you love.</span></h1>
+        </div>
+        <div class="container_storeProducts">
+            {{#each products}}
+            {{#if status}}
+            <div class="productCard">
+                {{#if stock}}
+                <span class="productCard_inStock">IN STOCK</span>
+                {{else}}
+                <span class="productCard_outOfStock">OUT OF STOCK</span>
+                {{/if}}
+                <h3>{{title}}</h3>
+                <img class="productCard_img" src="../assets/images/store/{{thumbnails}}" alt={{title}}></img>
+                <div class="productCard_info">
+                    <div class="productCard_info_text">
+                        <h4>From ${{price}}</h4>
+                    </div>
+                    {{#if stock}}
+                    <button class="productCard_info_button"><a
+                            href="/products/{{_id}}">buy</a></button>
+                    {{else}}
+                    <button class="productCard_info_button_outOfStock">buy</button>
+                    {{/if}}
+                </div>
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>
+        <div class="prev-netxPage_buttons">
+            {{#unless hasPrevPage}}
+            <span class="prev_page_notEnabled">Back</span>
+            {{/unless}}
+            {{#if hasPrevPage}}
+            <a href="/products?page={{prevPage}}">Back</a>
+            {{/if}}
+            <p>Page {{currentPage}} of {{totalPages}}</p>
+            {{#if hasNextPage}}
+            <a href="/products?page={{nextPage}}">Next</a>
+            {{/if}}
+            {{#unless hasNextPage}}
+            <span class="prev_page_notEnabled">Next</span>
+            {{/unless}}
+        </div>
+    </section>
+</main>
+{{>footer}}
+{{>welcomeModal}}

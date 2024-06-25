@@ -1,0 +1,36 @@
+{{>header}}
+<section class="section_premium">
+    <div class="premium_container_title">
+        <h1>Premium Hub. <span>Post and manage <br>your products on our site.</span></h1>
+    </div>
+    <p style="display: none;" id="userEmail">{{user.email}}</p>
+    <p style="display: none;" id="userRole">{{user.role}}</p>
+    <table id="productsTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>thumbnails</th>
+                <th>Code</th>
+                <th>Stock</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Los datos de los usuarios se insertarán aquí -->
+        </tbody>
+    </table>
+</section>
+<section class="section_form">
+    <form id="premium_productForm">
+        <h2 id="form_title">Add a product</h2>
+        <div class="container_formInputs"></div>
+        <div id="status"></div>
+        <button id="premium_btn_submit">Add Product</button>
+    </form>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+<script src="/js/premium-pannel.js"></script>

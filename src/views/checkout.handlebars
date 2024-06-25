@@ -1,0 +1,51 @@
+{{>header}}
+<section class="section_checkout">
+    <h1>Ready to place your order? <br>Let's make sure everything's right.</h1>
+    <ol class="cart_productList">
+        {{#each products }}
+        <li class="cart_product">
+            <div class="cart_product_img">
+                <img src="../assets/images/store/{{this.product.thumbnails}}" alt="{{this.product.title}}">
+            </div>
+            <div class="cart_product_text">
+                <div class="cart_product_text_title">
+                    <h2>{{this.product.title}}</h2>
+                </div>
+                <div class="cart_product_text_price_mobile">
+                    <span>{{this.quantity}}</span>
+                    <p>${{this.product.totalPrice}}</p>
+                </div>
+                <span class="cart_product_text_span">{{this.quantity}}</span>
+                <p class="cart_product_text_price">${{this.product.totalPrice}}</p>
+            </div>
+        </li>
+        {{/each}}
+    </ol>
+    <div class="cart_totalProducts">
+        <div class="cart_totalProducts_subtotal">
+            <span>Subtotal</span>
+            <span>${{totalPurchase}}</span>
+        </div>
+        <div class="cart_totalProducts_shipping">
+            <span>Shipping</span>
+            <span>FREE</span>
+        </div>
+        <div class="cart_totalProducts_total">
+            <p>Total</p>
+            <p>${{totalPurchase}}</p>
+        </div>
+    </div>
+    <div class="checkout_option_payment_container">
+        {{!-- <div class="checkout_option_payment">
+            <button onclick="getOrder('{{user.cart}}')">Place Your Order</button>
+        </div> --}}
+        <form class="checkout_option_payment" action="/api/carts/{{user.cart}}/purchase" method="post">
+            <button type="submit">Place Your Order</button>
+        </form>
+    </div>
+
+</section>
+<script src="/js/checkout.js"></script>
+{{>cartHelp}}
+{{>cartNews}}
+{{>footer}}

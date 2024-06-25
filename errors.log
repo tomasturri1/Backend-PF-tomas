@@ -1,0 +1,11 @@
+error: Error message
+warning: Warning message
+info: Info message
+error: All fields are mandatory.
+error: A product with that code already exists.
+info: Product created: {"title":"new product","description":"testing product creation","category":"testing","price":0,"code":"CODE22","stock":20,"status":true,"thumbnails":[],"_id":"66280e7dd7f27273ae735f80","__v":0}
+info: Product found: {"_id":"66280e7dd7f27273ae735f80","title":"new product","description":"testing product creation","category":"testing","price":0,"code":"CODE22","stock":20,"status":true,"thumbnails":[],"__v":0}
+info: Product updated: {"title":"new product - second version","description":"testing product creation","category":"testing","price":0,"code":"CODE22","stock":20,"status":false}
+info: Product deleted: {"_id":"66280e7dd7f27273ae735f80","title":"new product - second version","description":"testing product creation","category":"testing","price":0,"code":"CODE22","stock":20,"status":false,"thumbnails":[],"__v":0}
+info: Connection to database successful.
+info: Server is running at http://localhost:8080

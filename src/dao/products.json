@@ -1,0 +1,268 @@
+[
+    {
+        "id": 1,
+        "title": "Airpods Pro",
+        "description": "Premium wireless earbuds with active noise cancellation for an immersive sound experience. Designed for comfort and performance, they ensure crystal-clear audio quality in any environment, making them perfect for music lovers and professionals.",
+        "category": "airpods",
+        "price": 249,
+        "code": "CODE1",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "Airpods_Pro.jpeg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 2,
+        "title": "iPhone 14",
+        "description": "The latest iPhone with powerful performance and advanced features. Experience stunning visuals on the Super Retina XDR display and capture exceptional photos with the dual-camera system. Stay connected with the A16 Bionic chip.",
+        "category": "iphone",
+        "price": 799,
+        "code": "CODE2",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "iPhone14.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 3,
+        "title": "iPhone 14 Pro",
+        "description": "The ultimate iPhone experience with pro-level features. Enjoy the Super Retina XDR display and capture pro-quality photos with the triple-camera system. Powered by the A16 Bionic chip, it offers exceptional performance and capabilities.",
+        "category": "iphone",
+        "price": 999,
+        "code": "CODE3",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "iPhone14_Pro.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 4,
+        "title": "Apple Watch Series 8",
+        "description": "The latest Apple Watch with advanced health and fitness features. Monitor your health with the ECG app and always-on Retina display. Stay active with water resistance and track your progress with precision.",
+        "category": "watch",
+        "price": 399,
+        "code": "CODE4",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "AppleWatch_Series8_Black.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 5,
+        "title": "Apple Watch Ultra",
+        "description": "Experience the next level of smartwatches with the Apple Watch Ultra. Its OLED display and blood oxygen app provide in-depth insights into your health. Navigate seamlessly with GPS, making it a reliable companion for any adventure.",
+        "category": "watch",
+        "price": 799,
+        "code": "CODE5",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "AppleWatch_Ultra.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 6,
+        "title": "MacBook Pro",
+        "description": "High-performance laptop for professionals and creatives. Powered by the M1 Pro or M1 Max chip, it delivers exceptional speed and graphics. The Retina XDR display and Thunderbolt ports provide a superior computing experience.",
+        "category": "mac",
+        "price": 1999,
+        "code": "CODE6",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "MacBook_Pro.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 7,
+        "title": "Airpods Max",
+        "description": "Over-ear headphones with high-fidelity audio and active noise cancellation. The H1 chip ensures seamless connectivity, while adaptive EQ optimizes sound quality. Immerse yourself in music, movies, and calls with style and comfort.",
+        "category": "airpods",
+        "price": 549,
+        "code": "CODE7",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "Airpods_Max_Black.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 8,
+        "title": "MacBook Air",
+        "description": "Thin and lightweight laptop with Apple's M1 chip for exceptional performance. Its Retina display and Magic Keyboard provide an enhanced computing experience in a sleek, portable form factor, making it ideal for productivity on the go.",
+        "category": "mac",
+        "price": 1099,
+        "code": "CODE8",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "MacBook_Air.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 9,
+        "title": "iPad Pro",
+        "description": "The ultimate iPad experience with powerful performance and versatile features. Enjoy the M1 chip, Liquid Retina XDR display, and Face ID. With the Apple Pencil and Magic Keyboard, it's perfect for creativity and productivity.",
+        "category": "ipad",
+        "price": 799,
+        "code": "CODE9",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "iPad_Pro.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 10,
+        "title": "iPad Mini",
+        "description": "Compact and portable iPad for on-the-go productivity and entertainment. Powered by the A15 Bionic chip and featuring a Liquid Retina display, it offers an exceptional user experience. Unlock new possibilities with Touch ID.",
+        "category": "ipad",
+        "price": 499,
+        "code": "CODE10",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "iPad_Mini.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 11,
+        "title": "iPad Air",
+        "description": "Powerful and versatile iPad with a stylish design. The A15 Bionic chip and Liquid Retina display provide impressive performance and visuals. With Apple Pencil support, it's a creative tool for work and play.",
+        "category": "ipad",
+        "price": 599,
+        "code": "CODE11",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "iPad_Air.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 12,
+        "title": "20W USB-C Charger",
+        "description": "A fast charging solution for various Apple devices. With 20W output and USB Power Delivery, it charges your devices quickly and efficiently, ensuring you stay powered up throughout the day.",
+        "category": "accesories",
+        "price": 19,
+        "code": "CODE12",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "Apple_Charger.jpeg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 13,
+        "title": "USB-C Charging Cable",
+        "description": "High-quality USB-C cable for charging and data transfer. Its USB-C to Lightning design and 1m length offer convenience and flexibility. Keep your devices connected and enjoy fast, reliable performance.",
+        "category": "accesories",
+        "price": 29,
+        "code": "CODE13",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "Apple_Charging_Cable.jpeg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 14,
+        "title": "Airtag",
+        "description": "Track and find your belongings with Apple's Airtag. The Bluetooth technology and replaceable CR2032 battery make it easy to locate items. Attach it to your essentials for peace of mind.",
+        "category": "accesories",
+        "price": 29,
+        "code": "CODE14",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "Airtag.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 15,
+        "title": "Screen Protector",
+        "description": "Protect your device's screen with a high-quality screen protector. It offers high-transparency and scratch-resistant features, preserving your display's clarity. The included cleaning cloth and squeegee card ensure easy installation.",
+        "category": "accesories",
+        "price": 39.95,
+        "code": "CODE15",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "Screen_Protector.jpg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 16,
+        "title": "Magic Keyborad",
+        "description": "Enhance your iPad or Mac with the Magic Keyboard for a premium typing experience. It features backlit keys, a trackpad, and a floating cantilever design for comfortable and efficient work and entertainment.",
+        "category": "accesories",
+        "price": 349,
+        "code": "CODE16",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "Apple_Magic_Keyboard.jpeg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 17,
+        "title": "3-in-1 Travel Charger",
+        "description": "A versatile travel charger designed for your Apple devices. With 30W PD charging, USB-A, and USB-C ports, it ensures you stay connected and powered up while on the move, making it a must-have accessory for travelers and tech enthusiasts.",
+        "category": "accesories",
+        "price": 149.95,
+        "code": "CODE17",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "Travel_Charger.jpeg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 18,
+        "title": "Apple Pencil (2nd gen)",
+        "description": "Unlock new possibilities with the Apple Pencil for precision and creativity. Its magnetic attachment, palm rejection, and pressure sensitivity provide a seamless drawing and writing experience, making it a valuable tool for artists and professionals.",
+        "category": "accesories",
+        "price": 129,
+        "code": "CODE18",
+        "stock": 20,
+        "status": true,
+        "thumbnails": [
+            "Apple_Pencil.jpeg"
+        ],
+        "owner": "admin"
+    },
+    {
+        "id": 19,
+        "title": "Apple Vision Pro",
+        "description": "Coming Soon",
+        "category": "accesories",
+        "price": 3499,
+        "code": "CODE19",
+        "stock": 20,
+        "status": false,
+        "thumbnails": [
+            "Apple_Vision_Pro.jpg"
+        ],
+        "owner": "admin"
+    }
+]

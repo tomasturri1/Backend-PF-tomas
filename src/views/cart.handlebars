@@ -1,0 +1,112 @@
+{{>header}}
+<div class="cart_notification_container" id="cartNotif">
+    <div class="cart_notification">
+        <span class="cart_notification_text" id="cartNotif_text"></span>
+        <button class="cart_notification_btn" id="cartNotif_btn" onclick="closeNotif()"><svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="close-icon"><path d="M6.41408 5.00002C6.0236 4.60953 5.3905 4.60953 5.00002 5.00002C4.60953 5.3905 4.60953 6.0236 5.00002 6.41408L10.586 12L5.00002 17.586C4.60953 17.9764 4.60953 18.6095 5.00002 19C5.3905 19.3905 6.0236 19.3905 6.41408 19L12 13.4141L17.586 19C17.9764 19.3905 18.6095 19.3905 19 19C19.3905 18.6095 19.3905 17.9764 19 17.586L13.4141 12L19 6.41408C19.3905 6.0236 19.3905 5.3905 19 5.00002C18.6095 4.60953 17.9764 4.60953 17.586 5.00002L12 10.586L6.41408 5.00002Z"></path></svg></button>
+    </div>
+</div>
+<section class="section_cart">
+    {{#unless products}}
+    <div class="section_cart_empty">
+        <h1>Your Bag is empty.</h1>
+        <span>Free delivery and free returns.</span>
+        <a class="cart_link_shopping" href="/products">Continue Shopping</a>
+    </div>
+    {{/unless}}
+    {{#if products}}
+    <div class="section_cart_empty" style="display: none;">
+        <h1>Your Bag is empty.</h1>
+        <span>Free delivery and free returns.</span>
+        <a class="cart_link_shopping" href="/products">Continue Shopping</a>
+    </div>
+    <div class="section_cart_full">
+        <h1>Review your Bag. <Span>Free delivery <br> and free returns.</Span></h1>
+        <div class="cart_promo_container">
+            <div class="cart_promo">
+                <div class="cart_promo_img">
+                    <img src="../assets/images/cart/apple_promo_logo.jpg" alt="Apple Promo Logo">
+                </div>
+                <div class="cart_promo_span">
+                    <span>Items not purchased with a one time payment may be eligible for $83.00/mo. at 0% APR when you
+                        check out with Apple Card Monthly Installments.</span>
+                </div>
+            </div>
+        </div>
+        <ol class="cart_productList" id="cartProductList">
+            {{#each products }}
+            <li class="cart_product" id="product-{{this.product._id}}">
+                <div class="cart_product_img">
+                    <img src="../assets/images/store/{{this.product.thumbnails}}" alt="{{this.product.title}}">
+                </div>
+                <div class="cart_product_text">
+                    <div class="cart_product_text_title">
+                        <h2>{{this.product.title}}</h2>
+                    </div>
+                    <div class="cart_product_text_price_mobile">
+                        <div class="counter_btn_container_mobile">
+                            <button class="counter_btn" id="less-quantity-{{this.product._id}}"
+                                onclick="removeOne('{{this.product._id}}','{{this.product.price}}','{{cartId}}','{{this.product.stock}}','{{this.quantity}}')">-</button>
+                            <span id="mobile-quantity-{{this.product._id}}">{{this.quantity}}</span>
+                            <button class="counter_btn" id="more-quantity-{{this.product._id}}"
+                                onclick="addOne('{{this.product._id}}','{{this.product.price}}','{{cartId}}','{{this.product.stock}}','{{this.quantity}}')">+</button>
+                        </div>
+                        <p id="mobile-cartProductPrice-{{this.product._id}}">${{this.product.totalPrice}}</p>
+                    </div>
+                    <div class="counter_btn_container">
+                        <button class="counter_btn" id="less-quantity-{{this.product._id}}"
+                            onclick="removeOne('{{this.product._id}}','{{this.product.price}}','{{cartId}}','{{this.product.stock}}','{{this.quantity}}')">-</button>
+                        <span class="cart_product_text_span" id="quantity-{{this.product._id}}">{{this.quantity}}</span>
+                        <button class="counter_btn" id="more-quantity-{{this.product._id}}"
+                            onclick="addOne('{{this.product._id}}','{{this.product.price}}','{{cartId}}','{{this.product.stock}}','{{this.quantity}}')">+</button>
+                    </div>
+                    <p id="cartProductPrice-{{this.product._id}}" class="cart_product_text_price">${{this.product.totalPrice}}</p>
+                    <button class="cart_product_remove" onclick="deleteProductInCart('{{cartId}}', '{{this.product._id}}', '{{this.product.title}}')" href="#header_global">Remove</button>
+                    <div class="cart_product_remove_container_mobile">
+                        <button class="cart_product_remove_mobile" onclick="deleteProductInCart('{{cartId}}', '{{this.product._id}}', '{{this.product.title}}')" href="#header_global">Remove</button>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ol>
+        <div class="cart_totalProducts">
+            <div class="cart_totalProducts_subtotal">
+                <span>Subtotal</span>
+                <span id="subTotalPurchase">${{totalPurchase}}</span>
+            </div>
+            <div class="cart_totalProducts_shipping">
+                <span>Shipping</span>
+                <span>FREE</span>
+            </div>
+            <div class="cart_totalProducts_total">
+                <p>Total</p>
+                <p id="totalPurchase">${{totalPurchase}}</p>
+            </div>
+        </div>
+        <div class="cart_options_container">
+            <h2>What would you like to do?</h2>
+            <div class="cart_options">
+                <div class="cart_options_clear">
+                    <h3>Clear all the products from your bag.</h3>
+                    <button onclick="clearCart('{{cartId}}')">Clear Cart</button>
+                </div>
+                <div class="cart_options_checkout">
+                    <h3>Proceed to checkout.</h3>
+                    <a href="/checkout">
+                        <button>Check Out</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="cart_options_container_mobile">
+            <button onclick="clearCart('{{cartId}}')">Clear Cart</button>
+            <a href="/checkout">
+                <button>Check Out</button>
+            </a>
+        </div>
+    </div>
+    {{/if}}
+</section>
+{{>cartHelp}}
+{{>cartNews}}
+{{>footer}}
+<script src="/js/cart.js"></script>
